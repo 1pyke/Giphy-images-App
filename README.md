@@ -17,6 +17,14 @@ This project aims to be a strong foundation for react-native applications. It pr
 - [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) for the icons in the app.
 - [redux](https://redux.js.org/) for state management.
 
+## Overview
+
+<img align="center" alt="Signin Screen" width="500px" src="./src/assets/signin.png" />
+<img align="center" alt="Signin Screen" width="500px" src="./src/assets/HomePage.png" />
+<img align="center" alt="Signin Screen" width="500px" src="./src/assets/moreDetails.png" />
+<img align="center" alt="Signin Screen" width="500px" src="./src/assets/shareURL.png" />
+<img align="center" alt="Signin Screen" width="500px" src="./src/assets/serach.png" />
+<img align="center" alt="Signin Screen" width="500px" src="./src/assets/viewFavorites.png" />
 ## Features
 
 - UI login
