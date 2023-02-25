@@ -26,7 +26,7 @@ const SignInScreen = () => {
     console.log(userData);
   }, [userData]);
 
-  // function only sends email and password to Redux Store
+  // function only sends email and password to Redux Store without using async storage
   const handelSignin = () => {
     setIsLoading(true);
     const userEmail = email.current.value;

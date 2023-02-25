@@ -6,21 +6,22 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
-  Button,
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import ButtonFavorite from '../../sharedComponents/ButtonFavorite';
 import {useNavigation} from '@react-navigation/native';
-import {setRemoveAllFavorites} from '../giphy-images-store';
+import ButtonFavorite from '../../sharedComponents/ButtonFavorite'; // this Component handel the favorite logic by passing the imgae to it
+import {setRemoveAllFavorites} from '../giphy-images-store'; // getting the remove all reducer function
 
 const FavoriteCard = () => {
   const dispatch = useDispatch();
   const favorite = useSelector(state => state.giphyImagesStore.favorites);
   const navigation = useNavigation();
 
+  // handelMoreDetails function navigates you to the MoreDetails page
   const handelMoreDetails = item => {
     navigation.navigate('MoreDetails', item);
   };
+  // removes all favorites function by using the setRemoveAllFavorites rudecer
   const handelRemoveAll = () => {
     dispatch(setRemoveAllFavorites());
   };
@@ -32,14 +33,14 @@ const FavoriteCard = () => {
         </View>
       ) : (
         <>
-          <Button
-            onPress={handelRemoveAll}
-            title="Remove all"
-            style={styles.removeAllFavoritesButton}
-          />
-          <Text style={styles.totalIteams}>
-            Total Saved Items : {favorite.length}
-          </Text>
+          <View style={styles.removeAllFavoritesButton}>
+            <Text style={styles.totalIteams}>
+              Total Saved Items : {favorite.length}
+            </Text>
+            <TouchableOpacity onPress={handelRemoveAll}>
+              <Text style={styles.removeAllFavoritesText}>Clear All</Text>
+            </TouchableOpacity>
+          </View>
           <FlatList
             suppressWarning={true}
             data={favorite}
@@ -90,16 +91,23 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  removeAllFavoritesText: {
+    color: '#833AB4',
+    fontSize: 20,
+    padding: 6,
+  },
   removeAllFavoritesButton: {
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    marginRight: '1%',
+    marginTop: '4%',
   },
   totalIteams: {
-    textAlign: 'center',
     fontSize: 15,
-    color: 'blue',
+    color: '#1B98E0',
     marginBottom: '4%',
     marginTop: '2%',
+    marginLeft: '3%',
   },
   card: {
     flex: 1,

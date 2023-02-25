@@ -1,10 +1,12 @@
 import React from 'react';
-import HomeScreen from './navigation/tabNavigation/HomeScreen';
-import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+
+//////////////////Components///////////////////
+import HomeScreen from './navigation/tabNavigation/HomeScreen';
 import Signin from './giphy-images/signin/Signin';
 import MoreDetails from './giphy-images/homePage/MoreDetails';
-// import GiphyScreens from './navigation/stacknavigation/GiphyScreens';
+
 const Stack = createNativeStackNavigator();
 const Index = () => {
   return (
@@ -14,7 +16,6 @@ const Index = () => {
           animation: 'slide_from_right',
           gestureEnabled: true,
           headerBackButtonMenuEnabled: false,
-          // headerShown: false,
         }}>
         <Stack.Screen
           options={{headerShown: false}}

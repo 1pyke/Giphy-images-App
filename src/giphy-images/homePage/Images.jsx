@@ -9,15 +9,14 @@ import {
   FlatList,
 } from 'react-native';
 import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
+//////////////////Reusable///////////////////
 import ButtonFavorite from '../../sharedComponents/ButtonFavorite';
-
-const API_KEY = 'I2K8kPab4SaWDK24ieiuryCp8ontUr0u';
+// this Component handel the favorite logic by passing the imgae to it
+const API_KEY = 'I2K8kPab4SaWDK24ieiuryCp8ontUr0u'; //key from GIPHY API i can use it in .env file but i wanted you to use the same key
 const PAGE_SIZE = 20;
 
-const App = () => {
+const Images = () => {
   const navigation = useNavigation();
   const [gifs, setGifs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,6 +25,7 @@ const App = () => {
   useEffect(() => {
     fetchGifs(currentPage);
   }, []);
+  // fetchGifs function make Giphy api requset and based on the limtes and page size
   const fetchGifs = async page => {
     setIsLoading(true);
     const response = await axios.get(
@@ -42,42 +42,10 @@ const App = () => {
   const handleLoadMore = () => {
     fetchGifs(currentPage + 1);
   };
+  // handelMoreDetails function navigates you to the MoreDetails page
   const handelMoreDetails = item => {
     navigation.navigate('MoreDetails', item);
   };
-  const toggleFavorite = async gif => {
-    try {
-      const value = await AsyncStorage.getItem(gif.id);
-      if (value !== null) {
-        // Remove item from favorites if it already exists
-        await AsyncStorage.removeItem(gif.id);
-        setGifs(prevGifs => {
-          const newGifs = prevGifs.map(g => {
-            if (g.id === gif.id) {
-              return {...g, isFavorite: false};
-            }
-            return g;
-          });
-          return newGifs;
-        });
-      } else {
-        // Add item to favorites
-        await AsyncStorage.setItem(gif.id, JSON.stringify(gif));
-        setGifs(prevGifs => {
-          const newGifs = prevGifs.map(g => {
-            if (g.id === gif.id) {
-              return {...g, isFavorite: true};
-            }
-            return g;
-          });
-          return newGifs;
-        });
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return (
     <View>
       <FlatList
@@ -115,7 +83,7 @@ const App = () => {
             <TouchableOpacity
               onPress={handleLoadMore}
               style={styles.loadMoreButton}>
-              {/* <Text style={styles.loadMoreText}></Text> */}
+              <Text style={styles.loadMoreText}>Please Wait a Secound</Text>
             </TouchableOpacity>
           )
         }
@@ -171,7 +139,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   favoriteButton: {
-    backgroundColor: '#2f8dcb',
+    backgroundColor: '#4E86B4',
     borderRadius: 5,
     padding: 10,
     marginTop: 10,
@@ -187,4 +155,4 @@ const styles = StyleSheet.create({
     borderColor: '#CED0CE',
   },
 });
-export default App;
+export default Images;

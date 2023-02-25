@@ -1,14 +1,15 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
-import ButtonFavorite from '../../sharedComponents/ButtonFavorite';
+import ButtonFavorite from '../../sharedComponents/ButtonFavorite'; // this Component handel the favorite logic by passing the imgae to it
+import ShareUrlButtoun from '../../sharedComponents/ShareUrlButtoun'; // this component taks a url of the image and bass it to shared modal
 
 const MoreDetails = ({route}) => {
   const {images, title, type, slug, url} = route.params;
   return (
     <View style={styles.container}>
-      {/* <View style={styles.header}></View> */}
       <ButtonFavorite item={route.params} />
       <Image source={{uri: images.original.url}} style={styles.image} />
+      <ShareUrlButtoun url={url} />
       <View style={styles.footer}>
         <Text style={styles.title}>Title: {title}</Text>
         <Text style={styles.type}>Type: {type}</Text>
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   url: {
-    color: '#0095f6',
+    color: '#1E6A8D',
   },
 });
 

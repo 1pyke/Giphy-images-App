@@ -4,11 +4,13 @@ import {
   setAddToFavorites,
   setRemoveItem,
 } from '../giphy-images/giphy-images-store';
-import {View, Button, StyleSheet} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons'; // icon from Ionicons
 
 const ButtonFavorite = ({item}) => {
-  const favorite = useSelector(state => state.giphyImagesStore.favorites);
+  const favorite = useSelector(state => state.giphyImagesStore.favorites); // geting the favorites array from store
   const dispatch = useDispatch();
+  // checks if the image in the array returns true if its not it will return false
   const imgaeIncluded =
     favorite.filter(favoriteGif => favoriteGif.id === item.id).length > 0
       ? true
@@ -21,12 +23,12 @@ const ButtonFavorite = ({item}) => {
     }
   };
 
-  const buttonText = imgaeIncluded ? 'Unsave' : 'Save';
+  const buttonText = imgaeIncluded ? 'heart' : 'heart-outline';
 
   return (
-    <View style={styles.favoritesButton}>
-      <Button onPress={handleClick} title={buttonText} />
-    </View>
+    <TouchableOpacity onPress={handleClick} style={styles.favoritesButton}>
+      <Ionicons name={buttonText} size={30} color="#ff5c96" />
+    </TouchableOpacity>
   );
 };
 const styles = StyleSheet.create({
