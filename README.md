@@ -1,4 +1,4 @@
-# Giphy-images-App //  not working because of the dependencies  
+# Giphy-images-App //  not working because of the dependencies (react navigation/stack)
 
 ## Description
 
